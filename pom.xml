@@ -12,6 +12,7 @@
       <module>spring-boot-swagger</module>
       <module>spring-boot-logging</module>
       <module>spring-boot-ajax</module>
+    <module>spring-boot-file-upload</module>
   </modules>
 
   <parent>
