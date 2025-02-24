@@ -1,0 +1,5 @@
+
+logging:
+  level:
+    com.caoliang.springboot.logging: debug
+#    root:DEBUG 表示全局日志级别设置为 DEBUG
