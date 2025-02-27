@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caoliang.springboot.dao.UserDao">
+    <select id="queryAll" resultType="com.caoliang.springboot.entity.User">
+        select id, name, password from tb_user order by id desc
+    </select>
+
+    <insert id="insert" parameterType="com.caoliang.springboot.entity.User">
+        insert into tb_user (name, password) values (#{name},#{password})
+    </insert>
+
+    <update id="update" parameterType="com.caoliang.springboot.entity.User">
+        update tb_user set name = #{name}, password = #{password} where id = #{id}
+    </update>
+
+    <delete id="remove" parameterType="String">
+        delete from tb_user where id = #{id}
+    </delete>
+
+</mapper>

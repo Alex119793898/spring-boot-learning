@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SpringBoot3 | Ajax 请求测试</title>
+</head>
+<body class="hold-transition login-page">
+<div style="width:720px;margin:7% auto">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="m-0">接口测试1</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">接口1返回数据如下：</h6>
+                            <p class="card-text" id="test1"></p>
+                            <a href="#" class="btn btn-primary" onclick="requestTest1()">新增用户</a>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="m-0">接口测试2</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">接口2返回数据如下：</h6>
+                            <p class="card-text" id="test2"></p>
+                            <a href="#" class="btn btn-primary" onclick="requestTest2()">修改用户</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="m-0">接口测试3</h5>
+                        </div>
+                        <div class="card-body">
+                            <input id="userId" type="text" placeholder="请输入 Id">
+                            <h6 class="card-title">接口3返回数据如下：</h6>
+                            <p class="card-text" id="test3"></p>
+                            <a href="#" class="btn btn-primary" onclick="requestTest3()">移除用户</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://cdn.staticfile.org/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+    function requestTest1() {
+        var info = $("#info").val();
+        $.ajax({
+            type: "POST",//方法类型
+            dataType: "text",//预期服务器返回的数据类型
+            url: "/insertUser",
+            contentType: "application/json; charset=utf-8",
+            data:JSON.stringify({
+                name: "lisi",
+                password: "123321",
+            }),
+            success: function (result) {
+                $("#test1").html(JSON.stringify(result));
+            },
+            error: function () {
+                $("#test1").html("接口异常，请联系管理员！");
+            }
+        });
+    }
+
+    function requestTest2() {
+        $.ajax({
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/updateUser",
+            contentType: "application/json; charset=utf-8",
+            data:JSON.stringify({
+                id: 6,
+                name: "lisi",
+                password: "999999",
+            }),
+            success: function (result) {
+                $("#test2").html(JSON.stringify(result));
+            },
+            error: function () {
+                $("#test2").html("接口异常，请联系管理员！");
+            }
+        });
+    }
+
+    function requestTest3() {
+        $.ajax({
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/removeUser",
+            contentType: "application/json; charset=utf-8",
+            data:$("#userId").val(),
+            success: function (result) {
+                $("#test3").html(JSON.stringify(result));
+            },
+            error: function () {
+                $("#test3").html("接口异常，请联系管理员！");
+            }
+        });
+    }
+
+
+</script>
+</body>
+</html>
